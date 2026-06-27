@@ -1,11 +1,16 @@
+"use client";
+
 import Image from "next/image";
 import BlurredShapeGray from "@/public/images/blurred-shape-gray.svg";
 import BlurredShape from "@/public/images/blurred-shape.svg";
 import FeaturesImage from "@/public/images/features.png";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Features() {
+  const { t } = useLanguage();
+
   return (
-    <section className="relative">
+    <section id="about" className="relative">
       <div
         className="pointer-events-none absolute left-1/2 top-0 -z-10 -mt-20 -translate-x-1/2"
         aria-hidden="true"
@@ -36,26 +41,18 @@ export default function Features() {
           <div className="mx-auto max-w-3xl pb-4 text-center md:pb-12">
             <div className="inline-flex items-center gap-3 pb-3 before:h-px before:w-8 before:bg-linear-to-r before:from-transparent before:to-indigo-200/50 after:h-px after:w-8 after:bg-linear-to-l after:from-transparent after:to-indigo-200/50">
               <span className="inline-flex bg-linear-to-r from-indigo-500 to-indigo-200 bg-clip-text text-transparent">
-                Advanced Controls
+                {t("About Us", "关于我们")}
               </span>
             </div>
             <h2 className="animate-[gradient_6s_linear_infinite] bg-[linear-gradient(to_right,var(--color-gray-200),var(--color-indigo-200),var(--color-gray-50),var(--color-indigo-300),var(--color-gray-200))] bg-[length:200%_auto] bg-clip-text pb-4 font-nacelle text-3xl font-semibold text-transparent md:text-4xl">
-              Built for modern product teams
+              {t("Our Vision & Mission", "我们的愿景与使命")}
             </h2>
             <p className="text-lg text-indigo-200/65">
-              Open AI reads and understands your files, and with nothing more
-              than a single line of feedback, so you can go further than the
-              speed of thought.
+              {t(
+                "DragonSpine CloudArray Technology is dedicated to driving enterprise digital transformation through innovative technology. Our team combines deep technical expertise with industry insights to provide customized solutions for our clients.",
+                "DragonSpine CloudArray Technology致力于通过创新技术推动企业数字化转型。我们的团队结合深厚的技术专长与行业洞察，为客户提供定制化的解决方案。"
+              )}
             </p>
-          </div>
-          <div className="flex justify-center pb-4 md:pb-12" data-aos="fade-up">
-            <Image
-              className="max-w-none"
-              src={FeaturesImage}
-              width={1104}
-              height={384}
-              alt="Features"
-            />
           </div>
           {/* Items */}
           <div className="mx-auto grid max-w-sm gap-12 sm:max-w-none sm:grid-cols-2 md:gap-x-14 md:gap-y-16 lg:grid-cols-3">
@@ -73,11 +70,13 @@ export default function Features() {
                 />
               </svg>
               <h3 className="mb-1 font-nacelle text-[1rem] font-semibold text-gray-200">
-                Project Milestones
+                {t("Innovation-Driven", "创新驱动")}
               </h3>
               <p className="text-indigo-200/65">
-                Track progress across custom flows for your team. Find the right
-                balance for the user, privacy and security.
+                {t(
+                  "Continuously exploring cutting-edge technologies, applying the latest cloud computing, AI, and mobile technologies to real business scenarios",
+                  "持续探索前沿技术，将最新的云计算、AI和移动技术应用于实际业务场景"
+                )}
               </p>
             </article>
             <article>
@@ -91,11 +90,13 @@ export default function Features() {
                 <path d="M19 6H0v2h17v8H7v-6H5v8h19v-2h-5V6Z" />
               </svg>
               <h3 className="mb-1 font-nacelle text-[1rem] font-semibold text-gray-200">
-                Team Views
+                {t("Customer-First", "客户为先")}
               </h3>
               <p className="text-indigo-200/65">
-                Track progress across custom flows for your team. Find the right
-                balance for the user, privacy and security.
+                {t(
+                  "Deeply understand customer needs, provide tailored solutions, and ensure technology investments generate maximum value",
+                  "深入理解客户需求，提供量身定制的解决方案，确保技术投资产生最大价值"
+                )}
               </p>
             </article>
             <article>
@@ -112,11 +113,13 @@ export default function Features() {
                 />
               </svg>
               <h3 className="mb-1 font-nacelle text-[1rem] font-semibold text-gray-200">
-                Advanced Search
+                {t("Technical Excellence", "技术卓越")}
               </h3>
               <p className="text-indigo-200/65">
-                Track progress across custom flows for your team. Find the right
-                balance for the user, privacy and security.
+                {t(
+                  "Supported by a team of senior engineers, ensuring delivery of high-quality, scalable, and secure technical solutions",
+                  "由资深工程师团队支持，确保交付高质量、可扩展且安全的技术解决方案"
+                )}
               </p>
             </article>
             <article>
@@ -138,11 +141,13 @@ export default function Features() {
                 <path d="m16.321 2-.5-.866 1.733-1 .5.866A22 22 0 0 1 21 12c0 3.852-1.017 7.636-2.948 10.97l-.502.865-1.73-1.003.501-.865A19.878 19.878 0 0 0 19 12a20 20 0 0 0-2.679-10Z" />
               </svg>
               <h3 className="mb-1 font-nacelle text-[1rem] font-semibold text-gray-200">
-                Strategic Initiatives
+                {t("Agile Delivery", "敏捷交付")}
               </h3>
               <p className="text-indigo-200/65">
-                Track progress across custom flows for your team. Find the right
-                balance for the user, privacy and security.
+                {t(
+                  "Adopting agile development methodology, rapid iteration, timely response to changes, ensuring on-time project delivery",
+                  "采用敏捷开发方法，快速迭代，及时响应变化，确保项目按时交付"
+                )}
               </p>
             </article>
             <article>
@@ -159,11 +164,13 @@ export default function Features() {
                 <path d="m7.454 2.891.891-.454L7.437.655l-.891.454a12 12 0 0 0 0 21.382l.89.454.91-1.781-.892-.455a10 10 0 0 1 0-17.818ZM17.456 1.11l-.891-.454-.909 1.782.891.454a10 10 0 0 1 0 17.819l-.89.454.908 1.781.89-.454a12 12 0 0 0 0-21.382Z" />
               </svg>
               <h3 className="mb-1 font-nacelle text-[1rem] font-semibold text-gray-200">
-                Flexible Workflows
+                {t("Long-term Partnership", "长期合作")}
               </h3>
               <p className="text-indigo-200/65">
-                Track progress across custom flows for your team. Find the right
-                balance for the user, privacy and security.
+                {t(
+                  "Not just a technology provider, but your long-term strategic partner, continuously supporting your business growth",
+                  "不仅是技术供应商，更是您的长期战略合作伙伴，持续支持您的业务增长"
+                )}
               </p>
             </article>
             <article>
@@ -180,11 +187,13 @@ export default function Features() {
                 <path d="M19.406 3.844 6.083 20.497.586 15 2 13.586l3.917 3.917L17.844 2.595l1.562 1.25Z" />
               </svg>
               <h3 className="mb-1 font-nacelle text-[1rem] font-semibold text-gray-200">
-                Unified Timeline
+                {t("Local Advantage", "本地优势")}
               </h3>
               <p className="text-indigo-200/65">
-                Track progress across custom flows for your team. Find the right
-                balance for the user, privacy and security.
+                {t(
+                  "Rooted in Nanjing, serving nationwide, deeply understanding Chinese market and enterprise needs, providing localized support",
+                  "扎根南京，服务全国，深刻理解中国市场和企业需求，提供本地化支持"
+                )}
               </p>
             </article>
           </div>

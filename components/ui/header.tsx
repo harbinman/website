@@ -1,37 +1,68 @@
 "use client";
 
-import Link from "next/link";
 import Logo from "./logo";
+import LanguageToggle from "./language-toggle";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Header() {
+  const { t } = useLanguage();
+
   return (
-    <header className="z-30 mt-2 w-full md:mt-5">
+    <header className="sticky top-0 z-30 w-full py-2 md:py-5">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="relative flex h-14 items-center justify-between gap-3 rounded-2xl bg-gray-900/90 px-3 before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-transparent before:[background:linear-gradient(to_right,var(--color-gray-800),var(--color-gray-700),var(--color-gray-800))_border-box] before:[mask-composite:exclude_!important] before:[mask:linear-gradient(white_0_0)_padding-box,_linear-gradient(white_0_0)] after:absolute after:inset-0 after:-z-10 after:backdrop-blur-xs">
+        <div className="relative flex h-16 items-center justify-between rounded-2xl bg-gray-900/95 px-6 backdrop-blur-md border border-gray-800 shadow-lg">
           {/* Site branding */}
-          <div className="flex flex-1 items-center">
+          <div className="flex items-center">
             <Logo />
           </div>
 
-          {/* Desktop sign in links */}
-          <ul className="flex flex-1 items-center justify-end gap-3">
-            <li>
-              <Link
-                href="/signin"
-                className="btn-sm relative bg-linear-to-b from-gray-800 to-gray-800/60 bg-[length:100%_100%] bg-[bottom] py-[5px] text-gray-300 before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-transparent before:[background:linear-gradient(to_right,var(--color-gray-800),var(--color-gray-700),var(--color-gray-800))_border-box] before:[mask-composite:exclude_!important] before:[mask:linear-gradient(white_0_0)_padding-box,_linear-gradient(white_0_0)] hover:bg-[length:100%_150%]"
-              >
-                Sign In
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/signup"
-                className="btn-sm bg-linear-to-t from-indigo-600 to-indigo-500 bg-[length:100%_100%] bg-[bottom] py-[5px] text-white shadow-[inset_0px_1px_0px_0px_--theme(--color-white/.16)] hover:bg-[length:100%_150%]"
-              >
-                Register
-              </Link>
-            </li>
-          </ul>
+          {/* Navigation links */}
+          <nav className="hidden md:block">
+            <ul className="flex items-center space-x-8">
+              <li>
+                <a
+                  href="/"
+                  className="text-base font-medium text-gray-100 hover:text-indigo-400 transition-colors"
+                >
+                  {t("Home", "首页")}
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/#products"
+                  className="text-base font-medium text-gray-100 hover:text-indigo-400 transition-colors"
+                >
+                  {t("Products", "产品/服务")}
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/#about"
+                  className="text-base font-medium text-gray-100 hover:text-indigo-400 transition-colors"
+                >
+                  {t("About", "关于我们")}
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/#contact"
+                  className="text-base font-medium text-gray-100 hover:text-indigo-400 transition-colors"
+                >
+                  {t("Contact", "联系我们")}
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+          {/* Mobile navigation and language toggle */}
+          <div className="flex items-center gap-4">
+            <div className="md:hidden flex items-center space-x-3">
+              <a href="/#products" className="text-sm text-gray-100">{t("Products", "产品")}</a>
+              <a href="/#about" className="text-sm text-gray-100">{t("About", "关于")}</a>
+              <a href="/#contact" className="text-sm text-gray-100">{t("Contact", "联系")}</a>
+            </div>
+            <LanguageToggle />
+          </div>
         </div>
       </div>
     </header>

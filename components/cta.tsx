@@ -1,9 +1,14 @@
+"use client";
+
 import Image from "next/image";
 import BlurredShape from "@/public/images/blurred-shape.svg";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Cta() {
+  const { t } = useLanguage();
+
   return (
-    <section className="relative overflow-hidden">
+    <section id="contact" className="relative overflow-hidden">
       <div
         className="pointer-events-none absolute bottom-0 left-1/2 -z-10 -mb-24 ml-20 -translate-x-1/2"
         aria-hidden="true"
@@ -23,30 +28,35 @@ export default function Cta() {
               className="animate-[gradient_6s_linear_infinite] bg-[linear-gradient(to_right,var(--color-gray-200),var(--color-indigo-200),var(--color-gray-50),var(--color-indigo-300),var(--color-gray-200))] bg-[length:200%_auto] bg-clip-text pb-8 font-nacelle text-3xl font-semibold text-transparent md:text-4xl"
               data-aos="fade-up"
             >
-              Join the content-first platform
+              {t(
+                "Ready to Start Your Digital Transformation?",
+                "准备开始您的数字化转型之旅？"
+              )}
             </h2>
-            <div className="mx-auto max-w-xs sm:flex sm:max-w-none sm:justify-center">
-              <div data-aos="fade-up" data-aos-delay={400}>
-                <a
-                  className="btn group mb-4 w-full bg-linear-to-t from-indigo-600 to-indigo-500 bg-[length:100%_100%] bg-[bottom] text-white shadow-[inset_0px_1px_0px_0px_--theme(--color-white/.16)] hover:bg-[length:100%_150%] sm:mb-0 sm:w-auto"
-                  href="#0"
-                >
-                  <span className="relative inline-flex items-center">
-                    Start Building
-                    <span className="ml-1 tracking-normal text-white/50 transition-transform group-hover:translate-x-0.5">
-                      -&gt;
-                    </span>
+            <div className="mb-8 space-y-3 text-gray-200" data-aos="fade-up" data-aos-delay={300}>
+              <p className="text-lg">
+                <span className="text-indigo-200/65">{t("Email", "邮箱")}:</span>{" "}
+                <a href="mailto:support@dragonspine-cloud.com" className="text-indigo-400 hover:text-indigo-300 transition">
+                  support@dragonspine-cloud.com
+                </a>
+              </p>
+              <p className="text-lg">
+                <span className="text-indigo-200/65">{t("Website", "网站")}:</span>{" "}
+                <span className="text-gray-300">dragonspine-cloud.com</span>
+              </p>
+            </div>
+            <div className="mx-auto max-w-xs" data-aos="fade-up" data-aos-delay={400}>
+              <a
+                className="btn group w-full bg-linear-to-t from-indigo-600 to-indigo-500 bg-[length:100%_100%] bg-[bottom] text-white shadow-[inset_0px_1px_0px_0px_--theme(--color-white/.16)] hover:bg-[length:100%_150%]"
+                href="mailto:support@dragonspine-cloud.com"
+              >
+                <span className="relative inline-flex items-center">
+                  {t("Contact Us", "联系我们")}
+                  <span className="ml-1 tracking-normal text-white/50 transition-transform group-hover:translate-x-0.5">
+                    -&gt;
                   </span>
-                </a>
-              </div>
-              <div data-aos="fade-up" data-aos-delay={600}>
-                <a
-                  className="btn relative w-full bg-linear-to-b from-gray-800 to-gray-800/60 bg-[length:100%_100%] bg-[bottom] text-gray-300 before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-transparent before:[background:linear-gradient(to_right,var(--color-gray-800),var(--color-gray-700),var(--color-gray-800))_border-box] before:[mask-composite:exclude_!important] before:[mask:linear-gradient(white_0_0)_padding-box,_linear-gradient(white_0_0)] hover:bg-[length:100%_150%] sm:ml-4 sm:w-auto"
-                  href="#0"
-                >
-                  Schedule Demo
-                </a>
-              </div>
+                </span>
+              </a>
             </div>
           </div>
         </div>
