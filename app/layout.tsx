@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import localFont from "next/font/local";
 
 import Header from "@/components/ui/header";
+import ScrollProgress from "@/components/ui/scroll-progress";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 
 const inter = Inter({
@@ -55,6 +56,7 @@ export default function RootLayout({
         className={`${inter.variable} ${nacelle.variable} bg-gray-950 font-inter text-base text-gray-200 antialiased`}
       >
         <LanguageProvider>
+          <ScrollProgress />
           <div className="flex min-h-screen flex-col overflow-hidden supports-[overflow:clip]:overflow-clip">
             <Header />
             {children}

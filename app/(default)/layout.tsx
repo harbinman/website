@@ -14,10 +14,12 @@ export default function DefaultLayout({
 }) {
   useEffect(() => {
     AOS.init({
-      once: true,
-      disable: "phone",
-      duration: 600,
-      easing: "ease-out-sine",
+      once: false,              // Allow animations to retrigger on scroll back
+      mirror: true,             // Animate elements out when scrolling past them
+      duration: 800,            // Longer duration for smoother animations
+      easing: "ease-out-cubic", // Better easing function for visual appeal
+      anchorPlacement: "top-bottom", // Start animation when element enters viewport
+      offset: 50,               // Trigger animations 50px before element enters viewport
     });
   });
 

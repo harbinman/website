@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { motion } from "framer-motion";
 import WorflowImg01 from "@/public/images/workflow-01.png";
 import WorflowImg02 from "@/public/images/workflow-02.png";
 import WorflowImg03 from "@/public/images/workflow-03.png";
@@ -9,6 +10,60 @@ import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Workflows() {
   const { t } = useLanguage();
+
+  // Container animation for staggered children
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.3,
+      },
+    },
+  };
+
+  // Card animation variants - different direction for each
+  const cardVariants = {
+    left: {
+      hidden: { opacity: 0, x: -60, scale: 0.9 },
+      visible: {
+        opacity: 1,
+        x: 0,
+        scale: 1,
+        transition: {
+          type: "spring",
+          stiffness: 80,
+          damping: 20,
+        },
+      },
+    },
+    center: {
+      hidden: { opacity: 0, y: 60, scale: 0.9 },
+      visible: {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        transition: {
+          type: "spring",
+          stiffness: 80,
+          damping: 20,
+        },
+      },
+    },
+    right: {
+      hidden: { opacity: 0, x: 60, scale: 0.9 },
+      visible: {
+        opacity: 1,
+        x: 0,
+        scale: 1,
+        transition: {
+          type: "spring",
+          stiffness: 80,
+          damping: 20,
+        },
+      },
+    },
+  };
 
   return (
     <section id="products">
@@ -33,11 +88,19 @@ export default function Workflows() {
           </div>
           {/* Spotlight items */}
           <Spotlight className="group mx-auto grid max-w-sm items-start gap-6 lg:max-w-none lg:grid-cols-3">
-            {/* Card 1 */}
-            <a
-              className="group/card relative h-full overflow-hidden rounded-2xl bg-gray-800 p-px before:pointer-events-none before:absolute before:-left-40 before:-top-40 before:z-10 before:h-80 before:w-80 before:translate-x-[var(--mouse-x)] before:translate-y-[var(--mouse-y)] before:rounded-full before:bg-indigo-500/80 before:opacity-0 before:blur-3xl before:transition-opacity before:duration-500 after:pointer-events-none after:absolute after:-left-48 after:-top-48 after:z-30 after:h-64 after:w-64 after:translate-x-[var(--mouse-x)] after:translate-y-[var(--mouse-y)] after:rounded-full after:bg-indigo-500 after:opacity-0 after:blur-3xl after:transition-opacity after:duration-500 hover:after:opacity-20 group-hover:before:opacity-100"
-              href="#0"
+            <motion.div
+              variants={cardVariants.left}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
             >
+              {/* Card 1 */}
+              <motion.a
+                className="group/card relative h-full overflow-hidden rounded-2xl bg-gray-800 p-px before:pointer-events-none before:absolute before:-left-40 before:-top-40 before:z-10 before:h-80 before:w-80 before:translate-x-[var(--mouse-x)] before:translate-y-[var(--mouse-y)] before:rounded-full before:bg-indigo-500/80 before:opacity-0 before:blur-3xl before:transition-opacity before:duration-500 after:pointer-events-none after:absolute after:-left-48 after:-top-48 after:z-30 after:h-64 after:w-64 after:translate-x-[var(--mouse-x)] after:translate-y-[var(--mouse-y)] after:rounded-full after:bg-indigo-500 after:opacity-0 after:blur-3xl after:transition-opacity after:duration-500 hover:after:opacity-20 group-hover:before:opacity-100"
+                href="#0"
+                whileHover={{ y: -8 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              >
               <div className="relative z-20 h-full overflow-hidden rounded-[inherit] bg-gray-950 after:absolute after:inset-0 after:bg-linear-to-br after:from-gray-900/50 after:via-gray-800/25 after:to-gray-900/50">
                 {/* Arrow */}
                 <div
@@ -84,11 +147,20 @@ export default function Workflows() {
                   </p>
                 </div>
               </div>
-            </a>
+            </motion.a>
+            </motion.div>
+            <motion.div
+              variants={cardVariants.center}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+            >
             {/* Card 2 */}
-            <a
+            <motion.a
               className="group/card relative h-full overflow-hidden rounded-2xl bg-gray-800 p-px before:pointer-events-none before:absolute before:-left-40 before:-top-40 before:z-10 before:h-80 before:w-80 before:translate-x-[var(--mouse-x)] before:translate-y-[var(--mouse-y)] before:rounded-full before:bg-indigo-500/80 before:opacity-0 before:blur-3xl before:transition-opacity before:duration-500 after:pointer-events-none after:absolute after:-left-48 after:-top-48 after:z-30 after:h-64 after:w-64 after:translate-x-[var(--mouse-x)] after:translate-y-[var(--mouse-y)] after:rounded-full after:bg-indigo-500 after:opacity-0 after:blur-3xl after:transition-opacity after:duration-500 hover:after:opacity-20 group-hover:before:opacity-100"
               href="#0"
+              whileHover={{ y: -8 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
               <div className="relative z-20 h-full overflow-hidden rounded-[inherit] bg-gray-950 after:absolute after:inset-0 after:bg-linear-to-br after:from-gray-900/50 after:via-gray-800/25 after:to-gray-900/50">
                 {/* Arrow */}
@@ -136,11 +208,20 @@ export default function Workflows() {
                   </p>
                 </div>
               </div>
-            </a>
+            </motion.a>
+            </motion.div>
+            <motion.div
+              variants={cardVariants.right}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+            >
             {/* Card 3 */}
-            <a
+            <motion.a
               className="group/card relative h-full overflow-hidden rounded-2xl bg-gray-800 p-px before:pointer-events-none before:absolute before:-left-40 before:-top-40 before:z-10 before:h-80 before:w-80 before:translate-x-[var(--mouse-x)] before:translate-y-[var(--mouse-y)] before:rounded-full before:bg-indigo-500/80 before:opacity-0 before:blur-3xl before:transition-opacity before:duration-500 after:pointer-events-none after:absolute after:-left-48 after:-top-48 after:z-30 after:h-64 after:w-64 after:translate-x-[var(--mouse-x)] after:translate-y-[var(--mouse-y)] after:rounded-full after:bg-indigo-500 after:opacity-0 after:blur-3xl after:transition-opacity after:duration-500 hover:after:opacity-20 group-hover:before:opacity-100"
               href="#0"
+              whileHover={{ y: -8 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
               <div className="relative z-20 h-full overflow-hidden rounded-[inherit] bg-gray-950 after:absolute after:inset-0 after:bg-linear-to-br after:from-gray-900/50 after:via-gray-800/25 after:to-gray-900/50">
                 {/* Arrow */}
@@ -188,7 +269,8 @@ export default function Workflows() {
                   </p>
                 </div>
               </div>
-            </a>
+            </motion.a>
+            </motion.div>
           </Spotlight>
         </div>
       </div>

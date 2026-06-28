@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { motion } from "framer-motion";
 import BlurredShapeGray from "@/public/images/blurred-shape-gray.svg";
 import BlurredShape from "@/public/images/blurred-shape.svg";
 import FeaturesImage from "@/public/images/features.png";
@@ -8,6 +9,47 @@ import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Features() {
   const { t } = useLanguage();
+
+  // Container for staggered children
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  // Individual card animation
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  // Icon animation with rotation
+  const iconVariants = {
+    hidden: { opacity: 0, scale: 0, rotate: -180 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      rotate: 0,
+      transition: {
+        type: "spring",
+        stiffness: 200,
+        damping: 15,
+      },
+    },
+  };
 
   return (
     <section id="about" className="relative">
@@ -55,20 +97,27 @@ export default function Features() {
             </p>
           </div>
           {/* Items */}
-          <div className="mx-auto grid max-w-sm gap-12 sm:max-w-none sm:grid-cols-2 md:gap-x-14 md:gap-y-16 lg:grid-cols-3">
-            <article>
-              <svg
+          <motion.div
+            className="mx-auto grid max-w-sm gap-12 sm:max-w-none sm:grid-cols-2 md:gap-x-14 md:gap-y-16 lg:grid-cols-3"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+          >
+            <motion.article variants={cardVariants}>
+              <motion.svg
                 className="mb-3 fill-indigo-500"
                 xmlns="http://www.w3.org/2000/svg"
                 width={24}
                 height={24}
+                variants={iconVariants}
               >
                 <path d="M0 0h14v17H0V0Zm2 2v13h10V2H2Z" />
                 <path
                   fillOpacity=".48"
                   d="m16.295 5.393 7.528 2.034-4.436 16.412L5.87 20.185l.522-1.93 11.585 3.132 3.392-12.55-5.597-1.514.522-1.93Z"
                 />
-              </svg>
+              </motion.svg>
               <h3 className="mb-1 font-nacelle text-[1rem] font-semibold text-gray-200">
                 {t("Innovation-Driven", "创新驱动")}
               </h3>
@@ -78,17 +127,18 @@ export default function Features() {
                   "持续探索前沿技术，将最新的云计算、AI和移动技术应用于实际业务场景"
                 )}
               </p>
-            </article>
-            <article>
-              <svg
+            </motion.article>
+            <motion.article variants={cardVariants}>
+              <motion.svg
                 className="mb-3 fill-indigo-500"
                 xmlns="http://www.w3.org/2000/svg"
                 width={24}
                 height={24}
+                variants={iconVariants}
               >
                 <path fillOpacity=".48" d="M7 8V0H5v8h2Zm12 16v-4h-2v4h2Z" />
                 <path d="M19 6H0v2h17v8H7v-6H5v8h19v-2h-5V6Z" />
-              </svg>
+              </motion.svg>
               <h3 className="mb-1 font-nacelle text-[1rem] font-semibold text-gray-200">
                 {t("Customer-First", "客户为先")}
               </h3>
@@ -98,20 +148,21 @@ export default function Features() {
                   "深入理解客户需求，提供量身定制的解决方案，确保技术投资产生最大价值"
                 )}
               </p>
-            </article>
-            <article>
-              <svg
+            </motion.article>
+            <motion.article variants={cardVariants}>
+              <motion.svg
                 className="mb-3 fill-indigo-500"
                 xmlns="http://www.w3.org/2000/svg"
                 width={24}
                 height={24}
+                variants={iconVariants}
               >
                 <path d="M23.414 6 18 .586 16.586 2l3 3H7a6 6 0 0 0-6 6h2a4 4 0 0 1 4-4h12.586l-3 3L18 11.414 23.414 6Z" />
                 <path
                   fillOpacity=".48"
                   d="M13.01 12.508a2.5 2.5 0 0 0-3.502.482L1.797 23.16.203 21.952l7.71-10.17a4.5 4.5 0 1 1 7.172 5.437l-4.84 6.386-1.594-1.209 4.841-6.385a2.5 2.5 0 0 0-.482-3.503Z"
                 />
-              </svg>
+              </motion.svg>
               <h3 className="mb-1 font-nacelle text-[1rem] font-semibold text-gray-200">
                 {t("Technical Excellence", "技术卓越")}
               </h3>
@@ -121,13 +172,14 @@ export default function Features() {
                   "由资深工程师团队支持，确保交付高质量、可扩展且安全的技术解决方案"
                 )}
               </p>
-            </article>
-            <article>
-              <svg
+            </motion.article>
+            <motion.article variants={cardVariants}>
+              <motion.svg
                 className="mb-3 fill-indigo-500"
                 xmlns="http://www.w3.org/2000/svg"
                 width={24}
                 height={24}
+                variants={iconVariants}
               >
                 <path
                   fillOpacity=".48"
@@ -139,7 +191,7 @@ export default function Features() {
                   opacity=".48"
                 />
                 <path d="m16.321 2-.5-.866 1.733-1 .5.866A22 22 0 0 1 21 12c0 3.852-1.017 7.636-2.948 10.97l-.502.865-1.73-1.003.501-.865A19.878 19.878 0 0 0 19 12a20 20 0 0 0-2.679-10Z" />
-              </svg>
+              </motion.svg>
               <h3 className="mb-1 font-nacelle text-[1rem] font-semibold text-gray-200">
                 {t("Agile Delivery", "敏捷交付")}
               </h3>
@@ -149,20 +201,21 @@ export default function Features() {
                   "采用敏捷开发方法，快速迭代，及时响应变化，确保项目按时交付"
                 )}
               </p>
-            </article>
-            <article>
-              <svg
+            </motion.article>
+            <motion.article variants={cardVariants}>
+              <motion.svg
                 className="mb-3 fill-indigo-500"
                 xmlns="http://www.w3.org/2000/svg"
                 width={24}
                 height={24}
+                variants={iconVariants}
               >
                 <path
                   fillOpacity=".48"
                   d="M12 8.8a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm-5 3a5 5 0 1 1 10 0 5 5 0 0 1-10 0Z"
                 />
                 <path d="m7.454 2.891.891-.454L7.437.655l-.891.454a12 12 0 0 0 0 21.382l.89.454.91-1.781-.892-.455a10 10 0 0 1 0-17.818ZM17.456 1.11l-.891-.454-.909 1.782.891.454a10 10 0 0 1 0 17.819l-.89.454.908 1.781.89-.454a12 12 0 0 0 0-21.382Z" />
-              </svg>
+              </motion.svg>
               <h3 className="mb-1 font-nacelle text-[1rem] font-semibold text-gray-200">
                 {t("Long-term Partnership", "长期合作")}
               </h3>
@@ -172,20 +225,21 @@ export default function Features() {
                   "不仅是技术供应商，更是您的长期战略合作伙伴，持续支持您的业务增长"
                 )}
               </p>
-            </article>
-            <article>
-              <svg
+            </motion.article>
+            <motion.article variants={cardVariants}>
+              <motion.svg
                 className="mb-3 fill-indigo-500"
                 xmlns="http://www.w3.org/2000/svg"
                 width={24}
                 height={24}
+                variants={iconVariants}
               >
                 <path
                   fillOpacity=".48"
                   d="M19 8h5v2h-5V8Zm-4 5h9v2h-9v-2Zm9 5H11v2h13v-2Z"
                 />
                 <path d="M19.406 3.844 6.083 20.497.586 15 2 13.586l3.917 3.917L17.844 2.595l1.562 1.25Z" />
-              </svg>
+              </motion.svg>
               <h3 className="mb-1 font-nacelle text-[1rem] font-semibold text-gray-200">
                 {t("Local Advantage", "本地优势")}
               </h3>
@@ -195,8 +249,8 @@ export default function Features() {
                   "扎根南京，服务全国，深刻理解中国市场和企业需求，提供本地化支持"
                 )}
               </p>
-            </article>
-          </div>
+            </motion.article>
+          </motion.div>
         </div>
       </div>
     </section>
