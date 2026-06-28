@@ -31,7 +31,7 @@ export default function Workflows() {
         x: 0,
         scale: 1,
         transition: {
-          type: "spring",
+          type: "spring" as const,
           stiffness: 80,
           damping: 20,
         },
@@ -44,7 +44,7 @@ export default function Workflows() {
         y: 0,
         scale: 1,
         transition: {
-          type: "spring",
+          type: "spring" as const,
           stiffness: 80,
           damping: 20,
         },
@@ -57,7 +57,7 @@ export default function Workflows() {
         x: 0,
         scale: 1,
         transition: {
-          type: "spring",
+          type: "spring" as const,
           stiffness: 80,
           damping: 20,
         },
